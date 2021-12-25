@@ -1,51 +1,52 @@
-const options={
-    client:'mysql2',
-    connection:{
-        host:"localhost",
-        user:"root",
-        password:"Navgurkul@123",
-        database:"knexdb"
-    }
-}
-const knex=require('knex')(options);
-var a=require('readline-sync');
-user=a.question("enter the operation command")
-if (user=="create"){
-    // Table=a.question("enter the table name")
-    knex.schema.createTable("marklist",(table)=>{
-        table.increments('ID')
-        table.string('NAME')
-        table.integer('AGE')
-    }).then(()=>{
-        console.log("table created")
-    }).catch((err)=>{
-        console.log(err);
-        throw err
-    }).finally(()=>{
-        knex.destroy();
-    });
-}
-else if(user=="insert"){
-    const customer=[]
-    // var readl=require("readline-sync")
-    var num=a.question("enter the number")
-    for (var i=1;i<=num;i++){
-        var id =a.question("enter the id")
-        var name=a.question("enter the name")
-        var age=a.question("enter the age")
-        const dict={ID:id,NAME:name,AGE:age}
-        customer.push(dict)
-        // console.log(customer)
-    
-    
-    }   
-    knex("marklist").insert(customer).then(()=>{
-        console.log("table inserted")
-    }).catch((err)=>{
-        console.log(err);
-        throw err
-    }).finally(()=>{
-        knex.destroy();
-    });
+// let i = 0 // declare a mutable variable
+// i += 1 // add one to the variable
+// console.log(i) // log the variable
+// aysnc file
+// const fs = require('fs')
+// const content = 'Logging to a file'
+// fs.writeFile('test.txt', content, err => {
+//     if (err) {
+//         throw err
+//     }
+//     console.log('logs completed')
+// })
+// console.log('end script')
 
-}
+// const fs = require('fs')
+// const content = 'Logging to a file'
+// try {
+//     fs.writeFileSync('test.txt', content)
+//     console.log('logs completed')
+// } catch (err) {
+//     throw err
+// }
+// .from({ length: 5 }, (v, i) => i + 1)
+// .forEach(value => console.log(value))
+
+// const request = new XMLHttpRequest()
+// request.open('GET', 'https://httpstat.us', false)
+// request.send(null)
+
+// if (request.status === 200) {
+//   console.log(request.responseText)
+// }
+// const database = require('thecoolestnewestdbframework')
+// database('table')
+//     .select('*')
+//     .asCallback((err, res) => {
+//         if (err) {
+//             throw err
+//         }
+//         // do something with the result
+//     })
+let done = true
+
+const isItDoneYet = new Promise((resolve, reject) => {
+  if (done) {
+    const workDone = 'Here is the thing I built'
+    resolve(workDone)
+  } else {
+    const why = 'Still working on something else'
+    reject(why)
+  }
+})
