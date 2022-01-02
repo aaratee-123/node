@@ -1,31 +1,15 @@
-// const { response } = require("express")
-// const express=require("express")
-// const app=express()
-// // app.get(route,callback)
-// app.get("/",(req,res)=>{
-//     res.send("hello world from the express")
-
-// })
-// app.listen(8000,()=>{
-//     console.log("listening the port at 8000")
-// })
-
-// var express = require('express');
-// var router = express.Router();
-
-// router.get('/', function(req, res){
-//    res.send('GET route on things.');
+const express=require('express');
+const app=express()
+app.set('view engine', 'ejs');
+// app.get('/profile/:name',function(req,res){
+//     res.sendFile(__dirname+"views")
 // });
-// router.post('/', function(req, res){
-//    res.send('POST route on things.');
-// });
+app.get("/profile/:name",(req,res)=>{
+    console.warn(req.params.name)
+    res.render('profile',{name:req.params.name});
 
-//export this router to use in our index.js
+})
 
-var express = require('express');
-var app = express();
-
-app.get('/:id', function(req, res){
-   res.send('The id you specified is ' + req.params.id);
-});
-app.listen(3000);
+app.listen(3000,"localhost",()=>{
+    console.log("port listen 3000")
+})
